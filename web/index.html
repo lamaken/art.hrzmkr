@@ -1,4 +1,5 @@
 <!-- 
+
     Document   : index
     Created on : 23/11/2015, 20:18:10
     Author     : lamaken
@@ -8,13 +9,56 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="refresh" content="1"> 
+
         <title>hrzmkr patterns</title>
+        <script>
+            var x = 0;
+            var y = 0;
+            var image;
+
+            function start() {
+                var w = document.body.clientWidth;
+                var h = document.body.clientHeight;
+
+
+                var canvas = document.getElementById("container");
+                var lastimage = 100;
+
+                if (document.getElementById(x)) {
+                    lastimage = document.getElementById(x);
+                }
+                //if (lastimage.left>=100) {
+                if (x % 2 === 0) {
+                    y = y + 1;
+                }
+                if (y < w/50) {
+
+                    var div = document.getElementById("mydiv");
+
+                    image.src = "http://localhost:8081/facegen/Main?mx=50&my=50&cellw=7&mosaic=";//  + y;
+                    canvas.innerHTML += div.innerHTML;
+                }
+            }
+            
+            function init() {
+                image = document.getElementById("image");
+                window.setInterval(start, 3);
+                //start();
+            }
+            function updatewindow() {
+                document.location = "/facegen";
+            }
+        </script>
     </head>
-    <body background="http://hrzmkr.com:8080/facegen/Main">
+
+    <body onload="init();" onresize="updatewindow();">
+        <div id="mydiv">
+            <img id="image"  src="" />
+        </div>
+        <div id="container"style="border: 0px;padding: 0px;" ></div> 
     <center>
-       
-        
+
+
     </center>
-    </body>
+</body>
 </html>

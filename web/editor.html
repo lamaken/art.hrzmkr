@@ -16,12 +16,13 @@
         
         
         <script>
-            function next(){
-                updateMain();
-                mostra.src="http://hrzmkr.com:8080/facegen/Main";
-                document.body.style.backgroundImage ="url('http://hrzmkr.com:8080/facegen/Main')";
-               
-            }
+            
+        var mx = 100;
+        var my = 100;
+        var cellw = 30;
+                
+                
+          
             
     function updateMain(){
                 
@@ -35,8 +36,8 @@
                 mydiv.setProperty("height", window.innerHeight);
                 
                 
-                mostra.src="http://hrzmkr.com:8080/facegen/Main?mx="+mx+"&my="+my+"&cellw="+cellw;
-                document.body.style.backgroundImage ="url('http://hrzmkr.com:8080/facegen/Main?mx="+mx+"&my="+my+"&cellw="+cellw+"')";
+                mostra.src="http://localhost:8081/facegen/Main?mx="+mx+"&my="+my+"&cellw="+cellw;
+                document.body.style.backgroundImage ="url('http://localhost:8081/facegen/Main?mx="+mx+"&my="+my+"&cellw="+cellw+"')";
                
             }
             
@@ -45,28 +46,23 @@
         
     </head>
 
-    <body id="main" background="http://hrzmkr.com:8080/facegen/Main" >
+    <body onload="carga()"  id="main" background="http://hrzmkr.com:8080/facegen/Main" >
         
         
         
         
-        
-        
-        
-        
+      
         
         <div  id="mydiv" style="font-family: sans-serif;color: white;width:300px; padding: 20px;background-color: #667705; text-align: center">
             <img id="mostra"  src="http://hrzmkr.com:8080/facegen/Main"/>
         <br>
         
-            <button name="next" onclick="next()" style="height:50px; width:100%">COLORIZE</button>
-            <br> width: <input oninput="updateMain()" onchange="updateMain()" id="mx" type="range" name="mx" min="50" max="150"/> 
-        <br> height: <input oninput="updateMain()" onchange="updateMain()" id="my" type="range" name="my" min="50" max="150"/> 
-        <br> cw: <input oninput="updateMain()" onchange="updateMain()" id="cellw" type="range" name="cellw" min="3" max="7"/> 
+            <br> width: <input oninput="updateMain()" onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="150"/> 
+        <br> height: <input oninput="updateMain()" onchange="updateMain()" id="my" type="range" name="my" min="5" max="150"/> 
+        <br> cw: <input oninput="updateMain()" onchange="updateMain()" id="cellw" type="range" name="cellw" min="1" max="7"/> 
         
        
      
-         <iframe style="visibility: hidden" width="0" height="0" src="index.html"></iframe>
                <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -90,6 +86,6 @@
   data-show-faces="true">
 </div>
         </div>
-       
+          
     </body>
 </html>
