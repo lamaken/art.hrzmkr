@@ -266,8 +266,8 @@ public class LiveMosaic {
 
         // save an animated GIF
         // saveAnimate(f, frames, delayTimes);
-        //File f2 = new File("/home/hrzmkr/facegen/last.gif");
-        File f2 = new File("/Users/lamaken/NetBeansProjects/facegen/build/web/mosaic.gif");
+        File f2 = new File("/home/hrzmkr/facegen/mosaic.gif");
+        //File f2 = new File("/Users/lamaken/NetBeansProjects/facegen/build/web/mosaic.gif");
 
        // saveAnimate(f, frames, delayTimes);
     }

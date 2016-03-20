@@ -338,8 +338,8 @@ public class GifEntity {
        // saveAnimate(f, frames, delayTimes);
         
         
-        //File f2 = new File("/home/hrzmkr/facegen/last.gif");
-         File f2 = new File("/Users/lamaken/NetBeansProjects/facegen/build/web/last.gif");
+        File f2 = new File("/home/hrzmkr/facegen/last.gif");
+        // File f2 = new File("/Users/lamaken/NetBeansProjects/facegen/build/web/last.gif");
         
          saveAnimate(f2, frames, delayTimes);
     }

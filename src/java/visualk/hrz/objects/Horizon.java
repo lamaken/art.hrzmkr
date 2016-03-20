@@ -20,7 +20,7 @@ import visualk.html.UniqueName;
 
 public class Horizon implements Serializable {
 
-    private static final String URL_IMG = "http://hrzmkr.com/img/";
+    private static final String URL_IMG = "http://art.hrzmkr.com/img/";
     /**
      *
      */

@@ -12,7 +12,13 @@
         <title>hrzmkr patterns mosaic</title>
         
         
-        
+         <script>
+            var remote = "http://hrzmkr.com:8080";
+            var local = "http://localhost:8081";
+            var url = remote;
+
+           
+        </script>
         
         
         <script>
@@ -36,8 +42,8 @@
                 mydiv.setProperty("height", window.innerHeight);
                 
                 
-                mostra.src="http://localhost:8081/facegen/Main?mx="+mx+"&my="+my+"&cellw="+cellw;
-                document.body.style.backgroundImage ="url('http://localhost:8081/facegen/Main?mx="+mx+"&my="+my+"&cellw="+cellw+"')";
+                mostra.src=url+"/facegen/Main?mx="+mx+"&my="+my+"&cellw="+cellw;
+                document.body.style.backgroundImage ="url('"+url+"/facegen/Main?mx="+mx+"&my="+my+"&cellw="+cellw+"')";
                
             }
             
@@ -46,7 +52,7 @@
         
     </head>
 
-    <body onload="carga()"  id="main" background="http://hrzmkr.com:8080/facegen/Main" >
+    <body onload="carga()"  id="main" background="http://hrzmkr.:8080/facegen/Main?mx=100&my=100&cellw=5" >
         
         
         
@@ -54,16 +60,20 @@
       
         
         <div  id="mydiv" style="font-family: sans-serif;color: white;width:300px; padding: 20px;background-color: #667705; text-align: center">
-            <img id="mostra"  src="http://hrzmkr.com:8080/facegen/Main"/>
+            <img id="mostra"  src="http://localhost:8081/facegen/Main"/>
         <br>
         
-            <br> width: <input oninput="updateMain()" onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="150"/> 
-        <br> height: <input oninput="updateMain()" onchange="updateMain()" id="my" type="range" name="my" min="5" max="150"/> 
-        <br> cw: <input oninput="updateMain()" onchange="updateMain()" id="cellw" type="range" name="cellw" min="1" max="7"/> 
+            <br> width: <input oninput="updateMain()" onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="250"/> 
+        <br> height: <input oninput="updateMain()" onchange="updateMain()" id="my" type="range" name="my" min="5" max="250"/> 
+        <br> cw: <input oninput="updateMain()" onchange="updateMain()" id="cellw" type="range" name="cellw" min="1" max="20"/> 
         
-       
+           
      
                <script>
+                   
+                   
+                   
+                   
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '418922584968324',
@@ -81,6 +91,7 @@
                </script><br> <br>
          <div
   class="fb-like"
+  data-href="http://art.hrzmkr.com/editor.html"
   data-share="true"
   data-width="450"
   data-show-faces="true">

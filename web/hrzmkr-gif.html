@@ -6,56 +6,58 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>hrzmkr new year eve</title>
+        <title>hrzmkr gif</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
 
 
         <script>
-
-
+            var remote = "http://hrzmkr.com:8080";
+            var local = "http://localhost:8081";
+            var url=remote;
+            
             function carga(name) {
-
-
-                //document.getElementById("canvas").src = "http://hrzmkr.com:8080/facegen/Main?hrzmkr=" + name;
-                document.getElementById("canvas").src = "http://localhost:8081/facegen/Main?hrzmkr=" + name;
-                
-                
-
+                document.getElementById("canvas").src = url+"/facegen/Main?hrzmkr=" + name;
             }
         </script>
 
 
     </head>
-    <body>
+    <body onload="carga(document.getElementById('algo').value);">
 
     <center>
-        Deixa el teu missatge aquí: <input  id="algo" type="text" value="bon any 2016.">
+        Deixa el teu missatge aquí: <input  id="algo" type="text" value="hrzmkr-gif by @hrzmkr">
         <br>
         <br>
         <button onclick="carga(document.getElementById('algo').value);" name="submit">Generate Animated HrzmkR</button>
-        <br><br>
-        <img  id="canvas" src="http://localhost:8081/facegen/Main?hrzmkr=hola"/>
+        <br>
+        <img id="canvas" alt="" src="">
+        <br>
         <br>
         <div class="fb-like" data-href="http://art.hrzmkr.com/hrzmkr-gif.html" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>  
+        <br>
+        
     </center>
 
     <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '155838881445810',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '155838881445810',
+                xfbml: true,
+                version: 'v2.5'
+            });
+        };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 </html>

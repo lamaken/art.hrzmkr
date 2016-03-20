@@ -1,0 +1,82 @@
+<!-- 
+
+    Document   : index
+    Created on : 23/11/2015, 20:18:10
+    Author     : lamaken
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>hrzmkr patterns</title>
+         <script>
+            var remote = "http://hrzmkr.com:8080";
+            var local = "http://localhost:8081";
+            var url = remote;
+
+        </script>
+        
+        <script>
+            var x = 0;
+            var y = 0;
+            var image;
+
+            function start() {
+                var w = document.body.clientWidth;
+                var h = document.body.clientHeight;
+
+
+                var canvas = document.getElementById("container");
+                var lastimage = 100;
+
+                if (document.getElementById(x)) {
+                    lastimage = document.getElementById(x);
+                }
+                //if (lastimage.left>=100) {
+                if (x % 2 === 0) {
+                    y = y + 1;
+                }
+                if (y < 150) {
+
+                    var div = document.getElementById("mydiv");
+
+                    image.src = url+"/facegen/Main?mx=50&my=50&cellw=7&mosaic="  + y;
+                    canvas.innerHTML += div.innerHTML;
+                }
+            }
+            
+            function init() {
+                image = document.getElementById("image");
+                window.setInterval(start, 3);
+                //start();
+            }
+            function updatewindow() {
+                document.location = "/facegen";
+            }
+        </script>
+    </head>
+
+    <body onload="init();">
+        <div id="mydiv">
+            <img id="image"  src="" />
+        </div>
+        <div id="container"style="border: 0px;padding: 0px;" ></div> 
+    <center>
+
+<div class="fb-like" data-href="http://art.hrzmkr.com/mosaic.anime.html" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+        
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/ca_ES/sdk.js#xfbml=1&version=v2.5";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+    </center>
+</body>
+</html>
