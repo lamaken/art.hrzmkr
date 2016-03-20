@@ -470,8 +470,8 @@ public class Horizon implements Serializable {
         // ombra
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        /*g2.setColor(Color.black);
-        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
+        g2.setColor(Color.black);
+        /*g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
                 .gethPalx(), this.getTopHrz() + this.gethPaly());
 */
          int rotation = 0;
@@ -490,7 +490,7 @@ public class Horizon implements Serializable {
         // pal
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_OFF);
-        g2.setColor(this.getColPal());
+        g2.setColor(Color.DARK_GRAY);
         g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
                 .getxPal(), this.getTopHrz() + this.getyPal()
                 - this.getAlçada());
@@ -499,15 +499,22 @@ public class Horizon implements Serializable {
                 - this.getAlçada());
 
 		// firma
-        // pal
+      
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        g2.setColor(Color.white);
-        g2.fillRect(0, this.getCanvasHeigth() + 1, this.getCanvasWidth(), 20);
-        g2.setColor(Color.gray);
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, this.getCanvasHeigth(), this.getCanvasWidth(), 20);
+        g2.setColor(Color.GRAY);
+        g2.fillRect(0, this.getCanvasHeigth()+1, this.getCanvasWidth(), 18);
+        
+        /*g2.setColor(Color.GRAY);
+        
+        g2.fillRect(4, this.getCanvasHeigth() - 4, this.getCanvasWidth()-2, 18);
+        */
+        g2.setColor(Color.WHITE);
         g2.drawString(this.authorHrz, 2, this.getCanvasHeigth() + 15);
 
         g2.dispose();

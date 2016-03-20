@@ -220,7 +220,8 @@ public class GifEntity {
             hrz2.setTopHrz(topHrz);
 
             hrz2.makeRandomPal();
-            alçada = hrz2.getAlçada();
+            
+            alçada = hrz2.getCanvasHeigth()/7;
             
             hrz2.setAlcada(alçada);
             palx = hrz2.getxPal();

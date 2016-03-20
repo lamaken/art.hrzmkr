@@ -142,6 +142,7 @@ public class Main extends HttpServlet {
             try {
                 copy(in, out);
             } catch (Exception e) {
+                e.printStackTrace();
             } finally {
                 in.close();
             }
