@@ -23,12 +23,10 @@ import javax.servlet.http.HttpServletResponse;
 import visualk.art.graph.GifEntity;
 import visualk.art.graph.LiveMosaic;
 
-
 /**
  *
  * @author lamaken
  */
-
 public class Main extends HttpServlet {
 
     public static float counter = 0;
@@ -45,15 +43,13 @@ public class Main extends HttpServlet {
         out.flush();
     }
 
-    
-    
-    
-    static public void step(){
-        counter+=0.01;
-        if(counter>10.3){
-            counter=0;
+    static public void step() {
+        counter += 0.01;
+        if (counter > 10.3) {
+            counter = 0;
         }
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -93,28 +89,47 @@ public class Main extends HttpServlet {
         String hrzmkr = request.getParameter("hrzmkr");
 
         if (mx != null) {
-            Main.CANVASX_SIZE = Integer.parseInt(mx);
+            try {
+                Main.CANVASX_SIZE = Integer.parseInt(mx);
+            } catch (Exception e) {
+                
+                Main.CANVASX_SIZE = 100;
+            }
+
         }
         if (my != null) {
-            Main.CANVASY_SIZE = Integer.parseInt(my);
+             try {
+                Main.CANVASY_SIZE = Integer.parseInt(my);
+            } catch (Exception e) {
+                
+                Main.CANVASY_SIZE = 100;
+            }
         }
-        if (cell != null) {
-            Main.cellw = Integer.parseInt(cell);
+        if (cell
+                != null) {
+             try {
+                Main.cellw = Integer.parseInt(cell);
+            } catch (Exception e) {
+                
+                Main.cellw = 3;
+            }
+           
         }
 
-        if (Main.counter > 0.3) {
+        if (Main.counter
+                > 0.3) {
             Main.counter = 0;
         }
         Main.counter += 0.001;
 
-        
-        if (request.getParameter("mosaic") != null) {
-             getMosaic("mosaic v0.0.1");
+        if (request.getParameter(
+                "mosaic") != null) {
+            getMosaic("mosaic v0.0.1");
 
             response.setContentType("image/gif");
-            
+
             String pathToWeb = getServletContext().getRealPath(File.separator);
-            String filename = pathToWeb+"mosaic.gif";
+            String filename = pathToWeb + "mosaic.gif";
             OutputStream out = response.getOutputStream();
             InputStream in = new FileInputStream(new File(filename));
             try {
@@ -126,17 +141,18 @@ public class Main extends HttpServlet {
 
             out.close();
 
-        }else if (request.getParameter("hrzmkr") == null) {
+        } else if (request.getParameter(
+                "hrzmkr") == null) {
             ImageIO.write(getFace(Main.counter), "gif", response.getOutputStream());
 
-        } else{
+        } else {
 
             getHrz(hrzmkr, Main.CANVASX_SIZE, Main.CANVASY_SIZE);
 
             response.setContentType("image/gif");
-            
+
             String pathToWeb = getServletContext().getRealPath(File.separator);
-            String filename = pathToWeb+"last.gif";
+            String filename = pathToWeb + "last.gif";
             OutputStream out = response.getOutputStream();
             InputStream in = new FileInputStream(new File(filename));
             try {
@@ -151,7 +167,7 @@ public class Main extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -194,7 +210,6 @@ public class Main extends HttpServlet {
     public static Integer CANVASY_SIZE = 100;
     public static Integer cellw = 15;
 
-    
     public BufferedImage getFace(float seed) {
 
         //seed=seed*new Float(Math.random()).intValue();
@@ -239,12 +254,6 @@ public class Main extends HttpServlet {
         return (buf);
     }
 
-    
-    
-    
-    
-    
-    
     public void getHrz(String name, int mx, int my) {
         /*
          BufferedImage buf = new BufferedImage(mx, my, 2);
@@ -281,8 +290,8 @@ public class Main extends HttpServlet {
 
         //return (buf);
     }
-    
-     public void getMosaic(String name) {
+
+    public void getMosaic(String name) {
         String[] args = new String[3];
 
         args[0] = name;
@@ -295,6 +304,5 @@ public class Main extends HttpServlet {
             e.printStackTrace();
         }
 
-       
     }
 }

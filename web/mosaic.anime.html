@@ -35,14 +35,14 @@
                     lastimage = document.getElementById(x);
                 }
                 //if (lastimage.left>=100) {
-                if (x % 2 === 0) {
+                if (x % 3 === 0) {
                     y = y + 1;
                 }
                 if (y < 150) {
 
                     var div = document.getElementById("mydiv");
 
-                    image.src = url+"/facegen/Main?mx=50&my=50&cellw=7&mosaic="  + y;
+                    image.src = url+"/facegen/Main?mx=100&my=100&cellw=10&mosaic="  + y;
                     canvas.innerHTML += div.innerHTML;
                 }
             }
@@ -59,7 +59,7 @@
     </head>
 
     <body onload="init();">
-        <div id="mydiv">
+        <div id="mydiv" style="visibility: hidden">
             <img id="image"  src="" />
         </div>
         <div id="container"style="border: 0px;padding: 0px;" ></div> 

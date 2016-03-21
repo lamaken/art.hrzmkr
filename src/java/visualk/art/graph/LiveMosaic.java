@@ -269,6 +269,6 @@ public class LiveMosaic {
         File f2 = new File("/home/hrzmkr/facegen/mosaic.gif");
         //File f2 = new File("/Users/lamaken/NetBeansProjects/facegen/build/web/mosaic.gif");
 
-       // saveAnimate(f, frames, delayTimes);
+        saveAnimate(f2, frames, delayTimes);
     }
 }
