@@ -10,15 +10,20 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
 
+       
+
 
         <script>
             var remote = "http://hrzmkr.com:8080";
             var local = "http://localhost:8081";
-            var url=remote;
-            
+            var url = remote;
+
             function carga(name) {
-                document.getElementById("canvas").src = url+"/facegen/Main?hrzmkr=" + name;
+                document.getElementById("canvas").src = url + "/facegen/Main?hrzmkr=" + name;
+                document.getElementById("fb").setAttribute("data-href", url + "/facegen/Main?hrzmkr=" + name);
             }
+
+
         </script>
 
 
@@ -34,9 +39,9 @@ and open the template in the editor.
         <img id="canvas" alt="" src="">
         <br>
         <br>
-        <div class="fb-like" data-href="http://art.hrzmkr.com/hrzmkr-gif.html" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>  
+        <div id="fb" class="fb-like" data-image='' data-href="http://art.hrzmkr.com/hrzmkr-gif.html" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>  
         <br>
-        
+
     </center>
 
     <script>
@@ -47,7 +52,6 @@ and open the template in the editor.
                 version: 'v2.5'
             });
         };
-
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {

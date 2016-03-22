@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.UUID;
 import org.w3c.dom.Node;
 
 import javax.imageio.*;
@@ -36,7 +37,7 @@ public class GifEntity {
     static Color colorBottom = Color.blue;
     static int topHrz = 0;
 
-    
+    public static String uniqueName;
     
     static int sx=0;
     static int sy=0;
@@ -334,13 +335,11 @@ public class GifEntity {
             }
         }
 
-        // save an animated GIF
-       // saveAnimate(f, frames, delayTimes);
         
         
-        File f2 = new File("/home/hrzmkr/facegen/last.gif");
-        // File f2 = new File("/Users/lamaken/NetBeansProjects/facegen/build/web/last.gif");
-        
+        //File f2 = new File("/home/hrzmkr/public_html/facegen/generated/"+uniqueName+".gif");
+         //File f2 = new File("/Users/lamaken/NetBeansProjects/facegen/build/web/"+uniqueName+".gif");
+         File f2 = new File("/home/hrzmkr/facegen/mosaic.gif");
          saveAnimate(f2, frames, delayTimes);
     }
 }

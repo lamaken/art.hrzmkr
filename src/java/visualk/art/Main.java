@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.UUID;
 import javax.imageio.ImageIO;
 
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import visualk.art.graph.GifEntity;
+import static visualk.art.graph.GifEntity.uniqueName;
 import visualk.art.graph.LiveMosaic;
 
 /**
@@ -147,12 +149,23 @@ public class Main extends HttpServlet {
 
         } else {
 
+            
+            GifEntity.uniqueName="gif-hrzmkr."+UUID.randomUUID().toString();
+            
+            
             getHrz(hrzmkr, Main.CANVASX_SIZE, Main.CANVASY_SIZE);
 
             response.setContentType("image/gif");
+            
+            
 
-            String pathToWeb = getServletContext().getRealPath(File.separator);
-            String filename = pathToWeb + "last.gif";
+            //String pathToWeb = "/home/hrzmkr/public_html/facegen/generated/";
+            //String pathToWeb = "/Users/lamaken/NetBeansProjects/facegen/build/web/";
+            String pathToWeb = "/home/hrzmkr/facegen/";
+            
+            //String filename = pathToWeb + GifEntity.uniqueName+".gif";
+            String filename = pathToWeb +"mosaic.gif";
+            
             OutputStream out = response.getOutputStream();
             InputStream in = new FileInputStream(new File(filename));
             try {
