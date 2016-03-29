@@ -1,0 +1,69 @@
+<!-- 
+    Document   : index
+    Created on : 23/11/2015, 20:18:10
+    Author     : lamaken
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>hrzmkr patterns mosaic</title>
+
+
+        <script>
+            var remote = "http://hrzmkr.com:8080";
+            var local = "http://localhost:8081";
+            var url = remote;
+
+
+        </script>
+
+
+        <script>
+
+            var mx = 100;
+            var my = 100;
+            var cellw = 30;
+
+
+
+
+            function updateMain() {
+
+                var mostra = document.getElementById("mostra");
+                var mx = document.getElementById("mx").value;
+                var my = document.getElementById("my").value;
+                var cellw = document.getElementById("cellw").value;
+                var main = document.getElementById("main");
+                var mydiv = document.getElementById("mydiv").style;
+
+                mydiv.setProperty("height", window.innerHeight);
+
+
+                mostra.src = url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw;
+                document.body.style.backgroundImage = "url('" + url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "')";
+
+            }
+
+        </script>
+
+
+    </head>
+
+    <body   id="main" background="http://hrzmkr.com:8080/facegen/Main?mx=100&my=100&cellw=5" >
+
+        <div  id="mydiv" style="font-family: sans-serif;color: white;width:300px; padding: 20px;background-color: #667705; text-align: center">
+            <img id="mostra"  src="http://hrzmkr.com:8080/facegen/Main"/>
+            <br>
+
+            <br> width: <input oninput="updateMain()" onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="250"/> 
+            <br> height: <input oninput="updateMain()" onchange="updateMain()" id="my" type="range" name="my" min="5" max="250"/> 
+            <br> cw: <input oninput="updateMain()" onchange="updateMain()" id="cellw" type="range" name="cellw" min="1" max="20"/> 
+            <br><br><input value="colorize" type="button" onclick="updateMain();"/>
+
+        </div>
+
+    </body>
+</html>
