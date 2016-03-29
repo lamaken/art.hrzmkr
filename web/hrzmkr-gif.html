@@ -10,17 +10,35 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
 
-       
+
 
 
         <script>
+            /**
+             * Generates a GUID string.
+             * @returns {String} The generated GUID.
+             * @example af8a8416-6e18-a307-bd9c-f2c947bbb3aa
+             * @author Slavik Meltser (slavik@meltser.info).
+             * @link http://slavik.meltser.info/?p=142
+             */
+            function guid() {
+                function _p8(s) {
+                    var p = (Math.random().toString(16) + "000000000").substr(2, 8);
+                    return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+                }
+                return _p8() + _p8(true) + _p8(true) + _p8();
+            }
+
+
             var remote = "http://hrzmkr.com:8080";
             var local = "http://localhost:8081";
             var url = remote;
 
+
             function carga(name) {
-                document.getElementById("canvas").src = url + "/facegen/Main?hrzmkr=" + name;
-                document.getElementById("fb").setAttribute("data-href", url + "/facegen/Main?hrzmkr=" + name);
+                var uuid = guid();
+                document.getElementById("canvas").src = url + "/facegen/Main?rnd=" + uuid + "&hrzmkr=" + name;
+                document.getElementById("fb").setAttribute("data-href", url + "/facegen/Main?rnd=" + uuid + "&hrzmkr=" + name);
             }
 
 
@@ -44,6 +62,7 @@ and open the template in the editor.
 
     </center>
 
+
     <script>
         window.fbAsyncInit = function() {
             FB.init({
@@ -52,6 +71,7 @@ and open the template in the editor.
                 version: 'v2.5'
             });
         };
+
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {
@@ -63,5 +83,6 @@ and open the template in the editor.
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+
 </body>
 </html>

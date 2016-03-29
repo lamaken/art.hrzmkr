@@ -164,7 +164,7 @@ public class Main extends HttpServlet {
             String pathToWeb = "/home/hrzmkr/facegen/";
             
             //String filename = pathToWeb + GifEntity.uniqueName+".gif";
-            String filename = pathToWeb +"mosaic.gif";
+            String filename = pathToWeb +"hrzmkr-gif.gif";
             
             OutputStream out = response.getOutputStream();
             InputStream in = new FileInputStream(new File(filename));
@@ -268,27 +268,7 @@ public class Main extends HttpServlet {
     }
 
     public void getHrz(String name, int mx, int my) {
-        /*
-         BufferedImage buf = new BufferedImage(mx, my, 2);
-         Graphics2D g2 = buf.createGraphics();
-         g2.clipRect(0, 0, mx, my + 20);
-
-         Horizon hrz2;
-         hrz2 = new Horizon("default");
-         hrz2.setAuthorHrz(name);
-         hrz2.setHorizontal();
-         hrz2.setAureaProp(true);
-         hrz2.setCanvasHeigth(my-20);
-         hrz2.setCanvasWidth(mx);
-         hrz2.makeRandomAlçadaHoritzo();
-         hrz2.makeRandomPal();
-         hrz2.makeRandomSuperNova();
-         hrz2.makeRandomHombra();
-         hrz2.makeRandomColors();
-
-         g2.drawImage(hrz2.getHrzImage(), null, 0, 0);
-         g2.dispose();
-         */
+        
         String[] args = new String[3];
 
         args[0] = name;
@@ -309,7 +289,7 @@ public class Main extends HttpServlet {
 
         args[0] = name;
         args[1] = "frm1.gif,frm2.gif,frm3.gif,frm4.gif,frm5.gif,frm6.gif,frm7.gif,frm8.gif,frm9.gif,frm10.gif,frm11.gif,frm12.gif,frm13.gif,frm14.gif";
-        args[2] = "30,30,30,30,30,30,30,30,30,30,30,30,30,30";
+        args[2] = "10,10,10,10,10,10,10,10,10,10,10,10,10,10";
 
         try {
             LiveMosaic.main(args);

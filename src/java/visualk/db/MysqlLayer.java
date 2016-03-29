@@ -46,6 +46,7 @@ public class MysqlLayer {
 	}
 	   try {
 		sql = dbConn.prepareStatement(sqlQuery);
+                dbConn.close();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -56,18 +57,24 @@ public class MysqlLayer {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+        
    }
    public ResultSet queryDB(String sqlQuery){
        PreparedStatement sql=null;
-       
+        try {
+		   Class.forName("com.mysql.jdbc.Driver");
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	try
 	   {
 	       String cadenaConn="jdbc:mysql://"+dbServer+":3306/"+dbDataBase;
 	       dbConn = DriverManager.getConnection(cadenaConn,dbUser,dbPassword);
 	       sql = dbConn.prepareStatement(sqlQuery);
 	       result=sql.executeQuery();
-	       // Close the result set, statement and the connection
-	       
+               // Close the result set, statement and the connection
+               dbConn.close();
 	       
 	   }
 	   catch (SQLException s)
@@ -77,7 +84,7 @@ public class MysqlLayer {
             //TODO:control d'excepcio
             
 	   }
-
+        
       return(result);
    }
 }

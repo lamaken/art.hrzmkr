@@ -17,6 +17,8 @@ and open the template in the editor.
 
             function carga() {
                 document.getElementById("canvas").src = url + "/facegen/Main?mosaic=3&mx=150&my=150&cellw=15";
+                document.getElementById("fb").setAttribute("data-href", url + "/facegen/Main?mosaic=3&mx=150&my=150&cellw=15");
+
             }
         </script>
 
@@ -28,19 +30,30 @@ and open the template in the editor.
         <img  id="canvas"/>
         <br>
         <br>
-        <div class="fb-like" data-href="http://art.hrzmkr.com/mosaic.hrzmkr.html" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-        
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
+        <div id="fb" class="fb-like"  data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+
+        <script>
+
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '812791625532308',
+                    xfbml: true,
+                    version: 'v2.5'
+                });
+            };
+
+            (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id))
+                if (d.getElementById(id)) {
                     return;
+                }
                 js = d.createElement(s);
                 js.id = id;
-                js.src = "//connect.facebook.net/ca_ES/sdk.js#xfbml=1&version=v2.5";
+                js.src = "//connect.facebook.net/en_US/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
-    </center>
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        < /center>
 
-</body>
-</html>
+        < /body>
+        < /html>

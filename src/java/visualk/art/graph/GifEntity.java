@@ -339,7 +339,7 @@ public class GifEntity {
         
         //File f2 = new File("/home/hrzmkr/public_html/facegen/generated/"+uniqueName+".gif");
          //File f2 = new File("/Users/lamaken/NetBeansProjects/facegen/build/web/"+uniqueName+".gif");
-         File f2 = new File("/home/hrzmkr/facegen/mosaic.gif");
+         File f2 = new File("/home/hrzmkr/facegen/hrzmkr-gif.gif");
          saveAnimate(f2, frames, delayTimes);
     }
 }

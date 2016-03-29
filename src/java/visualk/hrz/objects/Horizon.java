@@ -14,12 +14,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.util.Random;
+import java.util.logging.Logger;
 
 import visualk.hrz.db.DbHorizons;
 import visualk.html.UniqueName;
 
 public class Horizon implements Serializable {
 
+    
     private static final String URL_IMG = "http://art.hrzmkr.com/img/";
     /**
      *
@@ -104,6 +106,7 @@ public class Horizon implements Serializable {
 
     public void carrega(String nom) {
 
+        
         Horizon tmp = db.getHrznBD(nom);
         this.nameHrz = tmp.nameHrz;
         this.topHrz = tmp.topHrz;
