@@ -8,51 +8,136 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <title>hrzmkr patterns mosaic</title>
+        <title>Mosaic Editor v0.1</title>
+        <meta name="Keywords"
+              content="mosaic,mosaic editor" />
+        <meta name="Description"
+              content="Design your own mosaics. Let computer draw or paint for you." />
+        <meta name="Author" content="lamaken@gmail.com" />
 
 
         <script>
             var remote = "http://hrzmkr.com:8080";
             var local = "http://localhost:8081";
             var url = remote;
-
-
         </script>
 
 
         <script>
 
-            var mx = 100;
-            var my = 100;
-            var cellw = 30;
 
-
+            function guid() {
+                function _p8(s) {
+                    var p = (Math.random().toString(16) + "000000000").substr(2, 8);
+                    return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+                }
+                return _p8() + _p8(true) + _p8(true) + _p8();
+            }
 
 
             function updateMain() {
 
+                rnd = guid();
+
+                mx = document.getElementById("mx").value;
+                my = document.getElementById("my").value;
+                cellw = document.getElementById("cellw").value;
+
+                rnd = guid();
+                
+                setCookie("mx", mx);
+                setCookie("my", my);
+                setCookie("rnd", rnd);
+                setCookie("cellw", cellw);
+
                 var mostra = document.getElementById("mostra");
-                var mx = document.getElementById("mx").value;
-                var my = document.getElementById("my").value;
-                var cellw = document.getElementById("cellw").value;
+
                 var main = document.getElementById("main");
                 var mydiv = document.getElementById("mydiv").style;
-
                 mydiv.setProperty("height", window.innerHeight);
+                mostra.src = url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
+                document.getElementById("main").background = url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
 
+                document.getElementById("fb").setAttribute("data-href", url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd);
 
-                mostra.src = url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw;
-                document.body.style.backgroundImage = "url('" + url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "')";
-
+                
             }
 
         </script>
 
+        <script>
 
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toGMTString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ')
+                        c = c.substring(1);
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function checkCookie() {
+                var user = getCookie("username");
+                if (user != "") {
+                    alert("Welcome again " + user);
+                } else {
+                    user = prompt("Please enter your name:", "");
+                    if (user != "" && user != null) {
+                        setCookie("username", user, 30);
+                    }
+                }
+            }
+
+            function init() {
+                mx = getCookie("mx");
+                my = getCookie("my");
+                cellw = getCookie("cellw");
+                rnd = getCookie("rnd");
+
+
+                document.getElementById("mx").value = mx;
+                document.getElementById("my").value = my;
+                document.getElementById("cellw").value = cellw;
+
+
+            }
+        </script>
+
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1056391414447569',
+                    xfbml: true,
+                    version: 'v2.5'
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
     </head>
 
-    <body   id="main" background="http://hrzmkr.com:8080/facegen/Main?mx=100&my=100&cellw=5" >
+    <body   onload="init()" id="main" background="http://hrzmkr.com:8080/facegen/Main" >
 
         <div  id="mydiv" style="font-family: sans-serif;color: white;width:300px; padding: 20px;background-color: #667705; text-align: center">
             <img id="mostra"  src="http://hrzmkr.com:8080/facegen/Main"/>
@@ -62,8 +147,13 @@
             <br> height: <input oninput="updateMain()" onchange="updateMain()" id="my" type="range" name="my" min="5" max="250"/> 
             <br> cw: <input oninput="updateMain()" onchange="updateMain()" id="cellw" type="range" name="cellw" min="1" max="20"/> 
             <br><br><input value="colorize" type="button" onclick="updateMain();"/>
+            <br><br>
+            <div id="fb" class="fb-like" data-image='' data-href="http://mosaic.hrzmkr.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>  
 
         </div>
 
+
     </body>
+
+
 </html>
