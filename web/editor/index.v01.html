@@ -1,8 +1,14 @@
+<!-- 
+    Document   : index
+    Created on : 23/11/2015, 20:18:10
+    Author     : lamaken
+-->
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mosaic Editor v0.2</title>
+        <title>Mosaic Editor v0.1</title>
         <meta name="Keywords"
               content="mosaic,mosaic editor" />
         <meta name="Description"
@@ -14,12 +20,10 @@
             var remote = "http://hrzmkr.com:8080";
             var local = "http://localhost:8081";
             var url = remote;
-
         </script>
 
 
         <script>
-
 
 
             function guid() {
@@ -30,16 +34,6 @@
                 return _p8() + _p8(true) + _p8(true) + _p8();
             }
 
-            function saveData() {
-                setCookie("mx", mx);
-                setCookie("my", my);
-                setCookie("rnd", rnd);
-                setCookie("cellw", cellw);
-            }
-
-            function reload() {
-                document.location.reload();
-            }
 
             function updateMain() {
 
@@ -50,19 +44,23 @@
                 cellw = document.getElementById("cellw").value;
 
                 rnd = guid();
-
-                saveData();
-
-                var StringImage = url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
-
+                
+                setCookie("mx", mx);
+                setCookie("my", my);
+                setCookie("rnd", rnd);
+                setCookie("cellw", cellw);
 
                 var mostra = document.getElementById("mostra");
 
-                mostra.onload = function () {
-                    myCanvas();
-                    document.getElementById("fb").setAttribute("data-href", StringImage);
-                };
-                mostra.src = StringImage;
+                var main = document.getElementById("main");
+                var mydiv = document.getElementById("mydiv").style;
+                mydiv.setProperty("height", window.innerHeight);
+                mostra.src = url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
+                document.getElementById("main").background = url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
+
+                document.getElementById("fb").setAttribute("data-href", url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd);
+
+                
             }
 
         </script>
@@ -103,30 +101,21 @@
             }
 
             function init() {
-
-                document.getElementById("myCanvas").width = w;
-                document.getElementById("myCanvas").height = h;
-
                 mx = getCookie("mx");
                 my = getCookie("my");
                 cellw = getCookie("cellw");
                 rnd = getCookie("rnd");
 
-               
+
                 document.getElementById("mx").value = mx;
                 document.getElementById("my").value = my;
                 document.getElementById("cellw").value = cellw;
-
-
 
 
             }
         </script>
 
         <script>
-            var w = window.innerWidth;
-            var h = window.innerHeight;
-
             window.fbAsyncInit = function () {
                 FB.init({
                     appId: '1056391414447569',
@@ -147,49 +136,24 @@
             }(document, 'script', 'facebook-jssdk'));
         </script>
     </head>
-    <body onload="init();
-            updateMain();
-                ">
 
+    <body   onload="init()" id="main" background="http://hrzmkr.com:8080/facegen/Main" >
 
+        <div  id="mydiv" style="font-family: sans-serif;color: white;width:300px; padding: 20px;background-color: #667705; text-align: center">
+            <img id="mostra"  src="http://hrzmkr.com:8080/facegen/Main"/>
+            <br>
 
+            <br> width: <input oninput="updateMain()" onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="250"/> 
+            <br> height: <input oninput="updateMain()" onchange="updateMain()" id="my" type="range" name="my" min="5" max="250"/> 
+            <br> cw: <input oninput="updateMain()" onchange="updateMain()" id="cellw" type="range" name="cellw" min="1" max="20"/> 
+            <br><br><input value="colorize" type="button" onclick="updateMain();"/>
+            <br><br>
+            <div id="fb" class="fb-like" data-image='' data-href="http://mosaic.hrzmkr.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>  
 
-        <div  id="mydiv" style="z-index:10;position: absolute;top: 30px; font-family: sans-serif;color: black; left:30px;padding: 10px;background-color: white; text-align: right">
-            <center>
-                <img id="mostra" />
-
-                <br>
-
-                <br> width: <input onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="250"/> 
-                <br> height: <input onchange="updateMain()" id="my" type="range" name="my" min="5" max="250"/> 
-                <br> cw: <input onchange="updateMain()"  id="cellw" type="range" name="cellw" min="1" max="20"/> 
-                <br><br><input value="colorize" type="button" onclick="updateMain();"/>
-                <br><br>
-                <div id="fb" class="fb-like" data-image='' data-href="http://mosaic.hrzmkr.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>  
-            </center>
         </div>
 
-        <canvas id="myCanvas">
-            Your browser does not support the HTML5 canvas tag.
-        </canvas>
-
-
-        <script>
-
-
-            function myCanvas() {
-                var c = document.getElementById("myCanvas");
-                var ctx = c.getContext("2d");
-                var mostra = document.getElementById("mostra");
-                var img = mostra;
-                for (var x = 0; x < w / img.width; x++) {
-                    for (var y = 0; y < h / img.height; y++) {
-                        ctx.drawImage(img, img.width * x, img.height * y);
-                    }
-                }
-
-            }
-        </script>
 
     </body>
+
+
 </html>
