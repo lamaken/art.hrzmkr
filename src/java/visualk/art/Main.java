@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import visualk.art.graph.GifEntity;
-import static visualk.art.graph.GifEntity.uniqueName;
 import visualk.art.graph.LiveMosaic;
 
 /**
