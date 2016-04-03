@@ -56,11 +56,30 @@
                 var StringImage = url + "/facegen/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
 
 
+                var sharefb = document.getElementById("sharefb");
                 var mostra = document.getElementById("mostra");
+
 
                 mostra.onload = function () {
                     myCanvas();
-                    document.getElementById("fb").setAttribute("data-href", StringImage);
+                    //document.getElementById("fb").setAttribute("data-href", StringImage);
+                    sharefb.onclick = function () {
+                        FB.ui({
+                            method: 'share_open_graph',
+                            action_type: 'og.shares',
+                            action_properties: JSON.stringify({
+                                object: {
+                                    'og:url': 'http://mosaic.hrzmkr.com',
+                                    'og:title': 'mosaic editor',
+                                    'og:description': 'New mosaic design only for divertimento.',
+                                    'og:og:image:width': mx,
+                                    'og:image:height': my,
+                                    'og:image': StringImage
+                                }
+                            })
+                        });
+                    };
+
                 };
                 mostra.src = StringImage;
             }
@@ -112,7 +131,9 @@
                 cellw = getCookie("cellw");
                 rnd = getCookie("rnd");
 
-               
+
+
+
                 document.getElementById("mx").value = mx;
                 document.getElementById("my").value = my;
                 document.getElementById("cellw").value = cellw;
@@ -149,7 +170,7 @@
     </head>
     <body onload="init();
             updateMain();
-                ">
+          ">
 
 
 
@@ -165,7 +186,8 @@
                 <br> cw: <input onchange="updateMain()"  id="cellw" type="range" name="cellw" min="1" max="20"/> 
                 <br><br><input value="colorize" type="button" onclick="updateMain();"/>
                 <br><br>
-                <div id="fb" class="fb-like" data-image='' data-href="http://mosaic.hrzmkr.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>  
+                <!--div id="fb" class="fb-like" data-image='http://hrzmkr.com:8080/facegen/Main' data-href="http://mosaic.hrzmkr.com" data-layout="button" data-action="recommend" data-show-faces="true" data-share="false"></div-->
+                <br><input id="sharefb"  style="background-color: #0000aa;color: white" value="- SHARE FB -" type="button"/>
             </center>
         </div>
 
@@ -187,9 +209,23 @@
                         ctx.drawImage(img, img.width * x, img.height * y);
                     }
                 }
-
             }
+
+
+            var mostra = document.getElementById("mostra");
+            var ENV, FB_ID, BASE_URL;
+
+            ENV = 'production';
+            FB_ID = '1056391414447569';
+            BASE_URL = 'http://mosaic.hrzmkr.com';
+
+
+
+
+
         </script>
+
+
 
     </body>
 </html>
